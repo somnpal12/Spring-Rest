@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+       <!--  <Property name="logPath">C:/temp/logs</Property> -->
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout
+                pattern="[%-5level] %d{HH:mm:ss.SSS} %logger{36}.%M() - %msg%n" />
+        </Console>
+
+        <RollingFile name="rollingFile" fileName="${sys:logFileLocation}/spring-rest.log"
+            filePattern="${sys:logFileLocation}/spring-rest_%d{yyyy-MM-dd}.log">
+            <PatternLayout
+                pattern="[%-5level] %d{HH:mm:ss.SSS} %logger{36}.%M() - %msg%n" />
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <TimeBasedTriggeringPolicy interval="1"
+                    modulate="true" />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+    	<Logger name="com.sample.rest" level="trace" additivity="false">
+			<AppenderRef ref="rollingFile" />
+		</Logger>
+       <Root level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+         
+        </Root>
+    </Loggers>
+</Configuration>

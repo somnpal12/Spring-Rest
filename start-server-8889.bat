@@ -1,0 +1,1 @@
+java -jar -Dserver.port=8889 -DlogFileLocation=C:\temp\logs\apps1 target\springrest-0.0.1-SNAPSHOT.jar
